@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" type="text/css" href="{{ asset('CSS/style.css') }}">
+	    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+	    <title>{% block title %}OC Plateforme{% endblock %}</title>
+	    {% block stylesheets %}
+	      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	    {% endblock %} 
+	</head>
+	<body>
+
+	<div class="container-fluid">
+		<h1 id="titre1">La Billetterie <br><span class="louvre"> - <br/>Musée du Louvre</span></h1>
+		
+
+		<div class="container">
+			
+
+			<div id="content">
+				{% block body %}
+				{% endblock %}
+			</div>
+
+			<hr>
+
+			<footer>
+				<ul class="list-inline">
+					<li class="col-sm-4"><a href="http://www.louvre.fr/">Site officiel</a></li>
+					<li class="col-sm-4"><a href="">Mentions Légales</a></li>
+					<li class="col-sm-4"><a href="">Conditions générales de vente</a></li>
+				</ul>
+			</footer>
+			
+		</div>
+	</div>	
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+	{% block js %}
+	{% endblock %}
+	</body>
+</html>

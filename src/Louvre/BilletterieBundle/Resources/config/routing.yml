@@ -1,0 +1,7 @@
+louvre_billetterie_home:
+    path:     /
+    defaults: { _controller: LouvreBilletterieBundle:Commande:index }
+
+    
+
+

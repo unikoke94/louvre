@@ -1,0 +1,82 @@
+{% extends "::layout.html.twig" %}
+{% form_theme form _self %}
+
+{% block body %}
+	<p>Hello world</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+	<h2>Formulaire de réservation</h2>
+	<div class="well">
+
+		{{ form_start(form, {'attr': {'class': 'form_horizontal'}}) }}
+
+		{{ form_errors(form) }}
+
+
+
+		<div class="form-row">
+			<div class="form-group col-md-2">
+				{{ form_row(form.dateVisite) }}
+			</div>
+			<div class="form-group col-md-5 col-md-offset-1">
+				{{ form_row(form.type) }}
+			</div>
+			<div class="form-group col-md-3 col-md-offset-1">
+				{{ form_label(form.nbTicket) }}
+				<div class="compteurTicket">
+					{{ form_errors(form.nbTicket) }}
+					<button type="button" class="bouton-moins" id="moins"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+					{{ form_widget(form.nbTicket, { 'attr': {
+					'readOnly': 'readOnly',
+					'maxlength': 1,
+					'min': 1,
+					'max': 5
+					}}) }}
+					<button type="button" class="bouton-plus" id="plus"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+				</div>
+			</div>
+		</div>
+			
+		<div>
+
+			<h3>Tickets</h3>
+
+			<div class="tickets" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}">
+			
+			</div>
+
+		</div>
+		
+
+		{{ form_row(form.save, {'attr': {
+		'class' : 'btn btn-primary btn-lg'
+		}}) }}
+		
+
+		{{ form_end(form) }}
+		
+	</div>
+{% endblock %}
+
+
+{% block js %}
+	<script src="{{ asset('js/ajoutTicket.js') }}"></script>
+{% endblock %}

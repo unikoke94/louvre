@@ -1,0 +1,40 @@
+/*.container-fluid {
+	background: #28324E;
+}*/
+
+#titre1 {
+	text-align: center;
+	/*color: #f7f4f4;*/
+}
+
+.louvre {
+	font-family: 'Cinzel', serif;
+	font-size: 120%;
+}
+
+li {
+	text-align: center;
+}
+
+.container {
+	background: #f2f2f2;
+}
+
+.compteurTicket {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.compteurTicket input {
+	display: inline-block;
+	width: 5em;
+	text-align: center;
+}
+
+.compteurTicket button {
+	text-align: center;
+	color: white;
+	background: #3071a9;
+	border: #3071a9;
+	border-radius: 2px;
+}
