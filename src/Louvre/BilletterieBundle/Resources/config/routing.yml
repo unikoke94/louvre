@@ -2,6 +2,24 @@ louvre_billetterie_home:
     path:     /
     defaults: { _controller: LouvreBilletterieBundle:Commande:index }
 
-    
+louvre_billetterie_paiement:
+    path:    /paiement
+    defaults: { _controller: LouvreBilletterieBundle:Commande:paiement }
+
+
+louvre_billetterie_confirmation:
+    path:    /confirmation
+    defaults: { _controller: LouvreBilletterieBundle:Commande:confirmation }  
+
+
+louvre_billetterie_mentionsLegales:
+    path:    /mentions-legales
+    defaults: { _controller: LouvreBilletterieBundle:Commande:mentionsLegales } 
+
+
+louvre_billetterie_cgv:
+    path:    /cgv
+    defaults: { _controller: LouvreBilletterieBundle:Commande:cgv }          
+        
 
 

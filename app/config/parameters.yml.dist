@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    secret_key: sk_test_ZQXcSjd8FNL9tDzJm39Wf9r2
+    publishabled_key: pk_test_G1ruozNo9Y3j0YpvWrfu9O1v

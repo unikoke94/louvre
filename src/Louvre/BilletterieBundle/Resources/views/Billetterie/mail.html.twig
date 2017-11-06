@@ -1,0 +1,31 @@
+﻿<h2 style="text-align:center;">Votre commande pour le Musée du Louvre <br> <img src="https://upload.wikimedia.org/wikipedia/fr/9/9f/Musee_du_Louvre_1992_logo.png" alt="logo Louvre"></h2>
+
+<p>Vous avez réservé pour la date du <strong>{{ commande.datevisite|date('d/m/Y') }}</strong>, pour la <strong>{{ commande.type }}</strong>.<br>
+Votre commande possède <strong>{{ commande.nbTicket }} tickets</strong> au total :</p>
+
+<span style="text-align: center;"><strong><h3>{% if commande.nbTicket > 1 %} Visiteurs {% else %} Visiteur {% endif %}</h3></strong></span>
+
+{% for ticket in commande.tickets %}
+		
+	<div>
+		<ul>
+			<li><strong>Nom : </strong>{{ ticket.nom }}</li>
+			<li><strong>Prénom : </strong>{{ ticket.prenom }}</li>
+			<li><strong>Catégorie : </strong>{{ ticket.tarif }}</li>
+			<li><strong>Tarif Réduit : </strong>{% if ticket.tarifReduit == 1 %} Oui {% else %} Non {% endif %}</li>
+			<li><strong>Prix : </strong>{{ ticket.prix }}</li>
+		</ul>
+	</div>
+	<hr>
+	<br>	
+{% endfor %}
+
+<div style="margin-top: 30px; border: #3071a9 1px solid; background: #b3daf9; text-align: center;">
+	<p>Voici votre code de réservation <br> <strong><span style="font-size: 18px">{{ commande.code }}</span></strong></p>
+</div>
+
+
+
+<p>Cet email fait office de ticket, veuillez l'imprimer ou le présenter à l'accueil du musée.</p>
+
+<p><a href="http://www.louvre.fr/" alt="site officile Louvre">Site officiel</a> - <a href="http://projet4.thomasbarriac.com" alt="billetterie musée">Billetterie</a></p>

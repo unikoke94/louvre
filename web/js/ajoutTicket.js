@@ -1,13 +1,15 @@
-$(window).load(function() {
-	addTicketForm();
-	//console.log();
-});
-
 var $collectionHolder = $('div.tickets');
 var $valeurInput = Number($('#commande_nbTicket').val());
 var $ticketPlusUn = $('#plus');
 var $ticketMoinsUn = $('#moins');
-var $dateNaissance = $('#commande_tickets_0_dateNaissance');
+var $valeurEmail = $('#commande_email').val();
+
+
+$(window).load(function() {
+	addTicketForm();
+	var now = new Date();
+	var currentDay = now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear();
+});
 
 
 $ticketPlusUn.on('click', function() {
@@ -23,60 +25,36 @@ $ticketMoinsUn.on('click', function() {
 	if ($valeurInput > 1) {
 		$valeurInput--;
 		delTicketForm();
-		//code pour supprimer un form ticket (soit appel fonction, soit code brut ici)
 		$('#commande_nbTicket').val($valeurInput);
 	} 
 }); 
 
 
-/*console.log(typeof $valeurInput);
-
-$('#commande_nbTicket').on('change', function() {
-	if($valeurInput > 5) {
-		//$valeurInput = 1;
-		console.log($valeurInput);
-	} else {
-		console.log('non');
-		addTicketForm();
-	}
-});*/
-
-
 function addTicketForm() {
 
 	var prototype = $collectionHolder.data('prototype');
-	//var index = Number($collectionHolder.data('index'));
-	var index = $collectionHolder.find('div').length;
-	var newForm = prototype.replace(/__name__/g, index);
-		//.replace(/__name__label__/g, 'Visiteur n°' + (index+1))	
+	var index = $collectionHolder.find('.block-ticket').length;
+	var newForm = prototype.replace(/__name__/g, index);	
 
-	$collectionHolder.data('index', index + 1);
+	$collectionHolder.data('index', index);
 	$collectionHolder.append(newForm);
 	index++;
+
+	//Code pour rajouter le widget datepicker sur chaque champ date de naissance
+	$('.block-dateNaissance').datepicker({
+		format: 'dd/mm/yyyy',
+		startDate: '01/01/1900',
+		endDate: '1d',
+	})
 
 }
 
 function delTicketForm() {
-	$collectionHolder.last().remove();
+	$('.block-ticket').last().remove();
 }
 
 
 
-
-
-//Tests sur le SELECT
-
-/*
-
-document.getElementById('commande_nbTicket').addEventListener("change", function (e) {
-	var valeur = parseInt(e.target.options[e.target.selectedIndex].value);
-	
-	for (i = 0; i < valeur; i++) { 
-	    addTicketForm();
-	}
-	
-});
-*/
 
 
 

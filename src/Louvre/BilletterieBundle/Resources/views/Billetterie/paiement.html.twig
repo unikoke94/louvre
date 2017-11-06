@@ -1,0 +1,83 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+
+	
+	{% if nombre < limite %}
+			<div class="block-recap">
+				<h2>Récapitulatif de votre commande</h2>
+				<div class="info-commande">
+					<p>Date de votre visite : <strong>{{ commande.dateVisite|date('d/m/Y')}}</strong></p>
+					<p>Type de ticket : <strong>{{ commande.type }}</strong></p>
+					<p>Nombre de {% if commande.nbTicket > 1 %}tickets{% else %}ticket{% endif %} : <strong>{{ commande.nbTicket }}</strong></p>
+				</div>
+				
+				<br>
+				
+				<h4>Informations visiteurs</h4>
+				<table class="table">
+				  <thead class="thead-default">
+				    <tr>
+				      <th>Nom</th>
+				      <th>Prénom</th>
+				      <th>Catégorie</th>
+				      <th>Tarif Réduit</th>
+				      <th>Prix</th>
+				    </tr>
+				  </thead>
+				  {% if commande.tickets == null %}
+				  	  <p>Aucun ticket n'a été validé, veuillez retourner à la <a href="{{ path('louvre_billetterie_home') }}"></a>Billetterie</p>
+				  {% else %}	
+					  <tbody>
+					  	{% for ticket in commande.tickets %}
+						    <tr>
+						      <td>{{ ticket.nom }}</td>
+						      <td>{{ ticket.prenom }}</td>
+						      <td>{{ ticket.tarif }}</td>
+						      <td>{% if ticket.tarifReduit == 1 %}Oui{% else %}Non{% endif %}</td>
+						      <th>{{ ticket.prix }}€</th>
+						    </tr>
+						{% endfor %}    
+					  </tbody>
+				  {% endif %}
+				</table>
+				<a href="{{ path('louvre_billetterie_home') }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Retour</button></a>
+				<p class="prix-total"><strong>Prix Total : {{ commande.prixTotal }} €</strong></p>
+				<!-- Faire un tableau bootstrap avec infos persos -->
+				
+			
+			</div>
+
+			<div class="block-achat">
+				<form action="#" method="POST" id="stripeForm">
+				  <script
+				    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				    data-key="{{ public_key }}"
+				    data-amount="{{ commande.prixTotal * 100 }}"
+				    data-name="Billetterie - Musée du Louvre"
+				    data-email="{{ commande.email }}"
+				    data-image="https://cdn.pariscityvision.com/media/wysiwyg/5-joconde-mona-lisa.jpg"
+				    data-locale="auto"
+				    data-zip-code="true"
+				    data-label="Payer"
+				    data-currency="eur">
+				    $(function() {
+				    	$('#stripeForm').submit(function(e) {
+				    		console.log('submit')
+				    		e.preventDefault()
+				    	})
+				    })
+				  </script>
+				</form>
+			</div>
+
+	{% else %}
+
+		<div class="block-erreur">
+			<p>Toutes nos excuses, la limite de tickets a été atteinte pour la date du <strong>{{ commande.datevisite|date('d/m/Y') }}</strong><br>
+			Vous pouvez choisir une autre date en retournant à la <a href="{{ path('louvre_billetterie_home') }}">Billetterie</a></p>
+		</div>
+
+	{% endif %}	
+
+{% endblock %}	

@@ -1,32 +1,51 @@
 {% extends "::layout.html.twig" %}
-{% form_theme form _self %}
+
 
 {% block body %}
-	<p>Hello world</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<noscript>
+	<div class="block-recommandation">
+		<p><strong>Attention </strong> : Veillez bien à ce que JavaScript soit activé sur votre navigateur.</p>
+	</div>
+	</noscript>
+	<p class="paragraphe">
+		Bonjour et bienvenue sur la <strong>Billetterie du Musée du Louvre</strong>. Vous avez la possibilité de prendre jusqu'à 5 billets pour le musée grâce à notre plateforme, avec le choix entre des billets journée complète, ou demie-journées (à partir de 14h). Veuillez trouver ci dessous les tarifs, ainsi que le formulaire vous permettant de réserver vos billets. Afin de bénéficier du tarif réduit, vous devez justifier de votre statut : étudiant, militaire, employé du musée, rattaché au Ministère de la Culture. 
+	</p>
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<div class="row blocks">
 
+		<div id="grille-tarifs" class="block-infos col-md-3 col-md-offset-2">
+			<h3>Les tarifs du Musée<br><span class="glyphicon glyphicon-euro" aria-hidden="true"></span></h3>
+			<p>
+				<strong>Normal</strong><br>-<br>à partir de 12 ans : <strong>16 €</strong><br><br>
+				<strong>Enfant</strong><br>-<br>entre 4 ans et 12 ans : <strong>8 €</strong><br><br>
+				<strong>Senior</strong><br>-<br>à partir de 60 ans : <strong>12 €</strong><br><br>
+				<strong>Reduit</strong><br>-<br>sous conditions : <strong>10 €</strong><br>
+			</p>
+		</div>
+
+		<div id="info-musee" class="block-infos col-md-3 col-md-offset-2">
+			<h3>Les infos du Musée<br><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></h3>
+			<p>
+				<strong>Horaires d'ouverture</strong><br>-<br>
+				Le musée est ouvert tous les jours, sauf le mardi et le dimanche, de <strong>09h00 à 22h00</strong>.<br>
+				Fermé les jours fériés.<br><br>
+				<strong>Adresse</strong><br>-<br>
+				Rue de Rivoli, 75001 Paris<br><br>
+				<strong>Telephone</strong><br>-<br>
+				01 40 20 50 50
+			</p>
+		</div>
+
+	</div>
+
+	
 	<h2>Formulaire de réservation</h2>
 	<div class="well">
 
-		{{ form_start(form, {'attr': {'class': 'form_horizontal'}}) }}
+		{{ form_start(form, {'attr': {
+		'class': 'form_horizontal',
+
+		}}) }}
 
 		{{ form_errors(form) }}
 
@@ -36,10 +55,18 @@
 			<div class="form-group col-md-2">
 				{{ form_row(form.dateVisite) }}
 			</div>
-			<div class="form-group col-md-5 col-md-offset-1">
+
+			<div class="form-group col-md-4">
+				{{ form_row(form.email) }}
+				<div class="alert alert-danger" id="message-email" role="alert">Format d'email invalide</div>
+			</div>
+
+			
+			<div class="form-group col-md-4">
 				{{ form_row(form.type) }}
 			</div>
-			<div class="form-group col-md-3 col-md-offset-1">
+
+			<div class="form-group col-md-2">
 				{{ form_label(form.nbTicket) }}
 				<div class="compteurTicket">
 					{{ form_errors(form.nbTicket) }}
@@ -55,12 +82,14 @@
 			</div>
 		</div>
 			
-		<div>
 
-			<h3>Tickets</h3>
+		<h3 id="titre-ticket-bug">Billets</h3>
+
+		<div class="form-group">
+
+			<br><h3 id="titre-ticket">-<br/>Billets Visiteurs</h3>
 
 			<div class="tickets" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}">
-			
 			</div>
 
 		</div>
@@ -69,6 +98,9 @@
 		{{ form_row(form.save, {'attr': {
 		'class' : 'btn btn-primary btn-lg'
 		}}) }}
+
+
+		{{ form_rest(form) }}
 		
 
 		{{ form_end(form) }}
@@ -78,5 +110,9 @@
 
 
 {% block js %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 	<script src="{{ asset('js/ajoutTicket.js') }}"></script>
+	<script src="{{ asset('js/regexForm.js') }}"></script>
+	<script src="{{ asset('js/dateVisite.js') }}"></script>
+	<script src="{{ asset('js/typeTicket.js') }}"></script>
 {% endblock %}

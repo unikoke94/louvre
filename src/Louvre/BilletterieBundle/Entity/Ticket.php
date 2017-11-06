@@ -50,24 +50,34 @@ class Ticket
      */
     private $dateNaissance;
 
+
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="dateVisite", type="date")
      */
-    private $email;
+    private $dateVisite;
 
-
+    
     /**
      * @ORM\Column(name="tarif", type="array")
      */
-    private $tarif = ['Bébé', 'Enfant', 'Adulte', 'Sénior'];
+    private $tarif = ['Bébé', 'Enfant', 'Normal', 'Sénior', 'Réduit'];
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="prix", type="smallint")
+     */
+    private $prix;
 
 
     /**
      * @ORM\Column(name="tarif_reduit", type="boolean")
      */
     private $tarif_reduit = false;
+
 
 
     /**
@@ -183,30 +193,7 @@ class Ticket
         return $this->dateNaissance;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Ticket
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
+    
     /**
      * Set tarif
      *
@@ -277,5 +264,54 @@ class Ticket
     public function getCommande()
     {
         return $this->commande;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     *
+     * @return Ticket
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+
+    /**
+     * Set dateVisite
+     *
+     * @param \DateTime $dateVisite
+     *
+     * @return Ticket
+     */
+    public function setDateVisite($dateVisite)
+    {
+        $this->dateVisite = $dateVisite;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVisite
+     *
+     * @return \DateTime
+     */
+    public function getDateVisite()
+    {
+        return $this->dateVisite;
     }
 }

@@ -2,3 +2,9 @@ services:
 #    louvre_billetterie.example:
 #        class: Louvre\BilletterieBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    louvre_billetterie.prix:
+        class: Louvre\BilletterieBundle\Services\Prix\LouvrePrix  
+
+
+    louvre_billetterie.stripe:
+        class: Louvre\BilletterieBundle\Services\Stripe\Stripe    

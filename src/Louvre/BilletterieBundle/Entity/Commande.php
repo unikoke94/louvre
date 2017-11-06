@@ -28,7 +28,7 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateVisite", type="datetime")
+     * @ORM\Column(name="dateVisite", type="date")
      */
     private $dateVisite;
 
@@ -49,9 +49,9 @@ class Commande
     /**
      * @var int
      *
-     * @ORM\Column(name="prix", type="smallint")
+     * @ORM\Column(name="prixTotal", type="smallint")
      */
-    private $prix;
+    private $prixTotal;
 
 
     /**
@@ -60,6 +60,14 @@ class Commande
      * @ORM\Column(name="code", type="string")
      */
     private $code;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
 
 
@@ -238,5 +246,53 @@ class Commande
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set prixTotal
+     *
+     * @param integer $prixTotal
+     *
+     * @return Commande
+     */
+    public function setPrixTotal($prixTotal)
+    {
+        $this->prixTotal = $prixTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get prixTotal
+     *
+     * @return integer
+     */
+    public function getPrixTotal()
+    {
+        return $this->prixTotal;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Commande
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
