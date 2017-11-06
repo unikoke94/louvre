@@ -55,21 +55,6 @@ class CommandeControllerTest extends WebTestCase
 
 		$crawler = $client->request('POST', '/paiement', array($commande, $ticket));
 
-		/*$form = $crawler->selectButton('Confirmer')->form();
-		$form['commande[dateVisite]'] = '2017-10-30';
-		$form['commande[email]'] = 'bar.tom@gmail.com';
-		$form['commande[type]'] = 'Journée';
-		$form['commande[nbTicket]'] = 1;
-		$form['commande[tickets][0][nom]'] = 'Bar';
-		$form['commande[tickets][0][prenom]'] = 'Tom';
-		$form['commande[tickets][0][pays]'] = 'FR';
-		$form['commande[tickets][0][dateNaissance]'] = '1989-03-19';
-		$form['commande[tickets][0][tarif_reduit]'] = 0;*/
-
-		//$client->submit($form);
-
-		//$crawler = $client->followRedirect();
-
 		$this->assertSame(2, $crawler->filter('table')->count());
 
 	}

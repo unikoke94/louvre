@@ -21,14 +21,6 @@ class CommandeController extends Controller
 
     	if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-           /* $jourChoisi = $form->get('dateVisite');
-            $diff = $jourChoisi->diff(new\DateTime());
-            $interval = $diff->d;
-
-            if($interval > 0) {
-                return $this->redirectToRoute('')
-            } */
-
             $this->get('louvre_billetterie.prix')->prixCommande($commande);
 
             $this->get('session')->set('commande', $commande);

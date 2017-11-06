@@ -54,7 +54,6 @@ class TicketType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Louvre\BilletterieBundle\Entity\Ticket',
-            //'data_class' => null
         ));
     }
 
